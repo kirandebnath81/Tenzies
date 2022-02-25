@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(0, 0, 44);
+  padding: 30px;
+}
+
+main {
+  height: 88vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(241, 241, 241);
+  border-radius: 20px;
+}
+
+.dice-container {
+  display: grid;
+  grid-template: auto auto / repeat(4, 1fr);
+  gap: 20px;
+}
+.die-face {
+  width: 70px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  border-radius: 5px;
+  box-shadow: 0px 3px 3px 1px rgb(153, 153, 248);
+}
+
+.gameBtn {
+  margin-bottom: 30px;
+  display: block;
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.3rem;
+  background-color: rgb(29, 4, 173);
+  color: white;
+  box-shadow: 1px 2px 1px rgb(179, 173, 235);
+}
+.startBtn {
+  background-color: black;
+}
+
+.gameBtn:active {
+  box-shadow: inset 0px 3px 3px 3px rgb(26, 3, 87);
+}
+
+/* Record Text */
+
+.tenzies-record {
+  width: 340px;
+  height: 200px;
+  color: rgb(26, 3, 87);
+}
+
+.hoderName {
+  margin-bottom: 10px;
+}
+.hoderName span {
+  font-size: 1.5rem;
+  color: black;
+}
+
+.recordRoll span {
+  font-size: 2rem;
+  color: black;
+}
+
+.recordTime span {
+  font-size: 2rem;
+  color: black;
+}
+
+.currentRoll {
+  margin-bottom: 20px;
+}
+.currentRoll p {
+  display: inline;
+  margin-right: 20px;
+}
+.currentRoll span {
+  font-size: 2rem;
+  color: black;
+}
+
+/* Tenzies Intro section */
+
+.tenzies-intro {
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.tenzies-intro div {
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.tenzies-intro p {
+  width: 400px;
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+}
+
+.inputText {
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  text-indent: 15px;
+  border: none;
+}
+
+.playBtn {
+  width: 140px;
+  height: 40px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: none;
+  background-color: black;
+  color: white;
+  box-shadow: 1px 1px 6px 3px rgb(76, 74, 146);
+}
+
+/* For Mobile Phone */
+
+@media screen and (max-width: 420px) {
+  main {
+    flex-direction: column;
+  }
+
+  .dice-container {
+    gap: 15px;
+  }
+
+  .die-face {
+    width: 50px;
+    height: 40px;
+    font-size: 2.3rem;
+  }
+
+  .tenzies-record {
+    width: 330px;
+    text-align: center;
+  }
+
+  .hoderName {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .tenzies-intro p {
+    width: 270px;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+  }
+}
