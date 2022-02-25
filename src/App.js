@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
+  //Dice Intro
   const [showIntro, setShowIntro] = useState(true);
   // Dice
   const [dice, setDice] = useState(() => allNewDie());
@@ -24,17 +25,20 @@ export default function App() {
   const [rollCount, setRollCount] = useState(0);
   const [savedRoll, setSavedRoll] = useState(localStorage.getItem("diceRoll"));
   // Record Time
-  const [startTime, setStartTime] = useState(false);
+  const [startGame, setStartGame] = useState(false);
   const [time, setTime] = useState(0);
   const [savedTime, setSavedTime] = useState(
     localStorage.getItem("recordTime")
   );
 
   useEffect(() => {
-    const allDieHeld = dice.every((die) => die.isHeld);
-    const allDieMatch = dice.every((die) => die.value === dice[0].value);
-    if (allDieHeld && allDieMatch) {
-      setStartTime(false);
+    // allDiceHeld && allDiceMath
+    const winCondition = dice.every(
+      (die) => die.isHeld && die.value === dice[0].value
+    );
+
+    if (winCondition) {
+      setStartGame(false);
       setTenzies(true);
       if (savedRoll === null || rollCount < savedRoll) {
         localStorage.setItem("diceRoll", rollCount);
@@ -48,18 +52,14 @@ export default function App() {
     } else {
       setTenzies(false);
     }
-
-    if (allDieHeld && !allDieMatch) {
-      toast.error("Opps,failed to match the dice", { theme: "colored" });
-    }
   }, [dice, rollCount, savedRoll, userName, time]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      startTime && setTime((prevTime) => prevTime + 1);
+      startGame && setTime((prevTime) => prevTime + 1);
     }, 1000);
     return () => clearInterval(timer);
-  }, [startTime]);
+  }, [startGame]);
 
   const startTenzies = () => {
     setShowIntro((prevState) => !prevState);
@@ -85,8 +85,8 @@ export default function App() {
     return newDie;
   }
 
-  const startGame = () => {
-    setStartTime((prevState) => !prevState);
+  const start = () => {
+    setStartGame((prevState) => !prevState);
   };
 
   const rollDice = () => {
@@ -133,10 +133,11 @@ export default function App() {
             <div className="tenzies-record">
               <div className="currentRoll">
                 <p>
-                  Your Roll : <span>{rollCount<10?"0"+rollCount:rollCount}</span>
+                  Your Roll :
+                  <span>{rollCount < 10 ? "0" + rollCount : rollCount}</span>
                 </p>
                 <p>
-                  Your Time : <span>{time<10?"0"+time:time}</span> sec
+                  Your Time : <span>{time < 10 ? "0" + time : time}</span> s
                 </p>
               </div>
               {savedRoll && (
@@ -145,10 +146,12 @@ export default function App() {
                     Record Holder : <span>{savedName}</span>
                   </h3>
                   <h3 className="recordRoll">
-                    Record Roll : <span>{savedRoll<10?"0"+savedRoll:savedRoll}</span>
+                    Record Roll :
+                    <span>{savedRoll < 10 ? "0" + savedRoll : savedRoll}</span>
                   </h3>
                   <h3 className="recordTime">
-                    Record Time : <span>{savedTime<10?"0"+savedTime:savedTime}</span>
+                    Record Time :
+                    <span>{savedTime < 10 ? "0" + savedTime : savedTime}</span>
                   </h3>
                 </div>
               )}
@@ -156,14 +159,19 @@ export default function App() {
 
             <div className="dice-container">{diceElement}</div>
             <div className="btns">
-              {!startTime && (
-                <button className="gameBtn  startBtn" onClick={startGame}>
+              {startGame ? (
+                <button className="gameBtn rollBtn" onClick={rollDice}>
+                  {tenzies ? "New Game" : "Roll"}
+                </button>
+              ) : tenzies ? (
+                <button className="gameBtn rollBtn" onClick={rollDice}>
+                  {tenzies ? "New Game" : "Roll"}
+                </button>
+              ) : (
+                <button className="gameBtn  startBtn" onClick={start}>
                   Start
                 </button>
               )}
-              <button className="gameBtn rollBtn" onClick={rollDice}>
-                {tenzies ? "New Game" : "Roll"}
-              </button>
             </div>
           </main>
         )}

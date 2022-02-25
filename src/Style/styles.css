@@ -24,17 +24,18 @@ main {
 .dice-container {
   display: grid;
   grid-template: auto auto / repeat(4, 1fr);
-  gap: 20px;
+  gap: 25px;
 }
 .die-face {
-  width: 70px;
-  height: 60px;
+  height: 48px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
-  border-radius: 5px;
-  box-shadow: 0px 3px 3px 1px rgb(153, 153, 248);
+  font-size: 3.5rem;
+  color: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
+  box-shadow: 6px 5px 10px 0px rgb(19, 13, 73);
 }
 
 .gameBtn {
@@ -47,14 +48,14 @@ main {
   font-size: 1.3rem;
   background-color: rgb(29, 4, 173);
   color: white;
-  box-shadow: 1px 2px 1px rgb(179, 173, 235);
+  box-shadow: inset 3px 2px 20px 2px rgb(4, 1, 43);
 }
 .startBtn {
   background-color: black;
 }
 
 .gameBtn:active {
-  box-shadow: inset 0px 3px 3px 3px rgb(26, 3, 87);
+  box-shadow: inset 1px 5px 50px 0px rgb(14, 13, 22);
 }
 
 /* Record Text */
@@ -146,12 +147,6 @@ main {
 
   .dice-container {
     gap: 15px;
-  }
-
-  .die-face {
-    width: 50px;
-    height: 40px;
-    font-size: 2.3rem;
   }
 
   .tenzies-record {
