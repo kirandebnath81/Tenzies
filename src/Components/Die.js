@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Die(props) {
   const styles = {
-    backgroundColor: props.isHeld ? "white" : "black",
-    color: props.isHeld ? "black" : "white",
+    backgroundColor: props.start && props.isHeld ? "white" : "black",
+    color: props.start && props.isHeld ? "black" : "white",
   };
 
   const diceValue = () => {
@@ -11,7 +11,7 @@ export default function Die(props) {
       case 1:
         return <i className="fa-solid fa-dice-one"></i>;
       case 2:
-        return <i className="fa-solid fa-dice-one"></i>;
+        return <i className="fa-solid fa-dice-two"></i>;
       case 3:
         return <i className="fa-solid fa-dice-three"></i>;
       case 4:

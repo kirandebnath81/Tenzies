@@ -33,11 +33,10 @@ export default function App() {
 
   useEffect(() => {
     // allDiceHeld && allDiceMath
-    const winCondition = dice.every(
-      (die) => die.isHeld && die.value === dice[0].value
-    );
+    const allDieHeld = dice.every((die) => die.isHeld);
+    const allDieMatch = dice.every((die) => die.value === dice[0].value);
 
-    if (winCondition) {
+    if (allDieHeld && allDieMatch) {
       setStartGame(false);
       setTenzies(true);
       if (savedRoll === null || rollCount < savedRoll) {
@@ -104,15 +103,16 @@ export default function App() {
   };
 
   const heldDie = (id) => {
-    setDice((prevDice) =>
-      prevDice.map((die) =>
-        die.id === id ? { ...die, isHeld: !die.isHeld } : die
-      )
-    );
+    startGame &&
+      setDice((prevDice) =>
+        prevDice.map((die) =>
+          die.id === id ? { ...die, isHeld: !die.isHeld } : die
+        )
+      );
   };
 
   const diceElement = dice.map((die) => (
-    <Die key={die.id} {...die} heldDie={heldDie} />
+    <Die key={die.id} {...die} heldDie={heldDie} start={startGame} />
   ));
 
   const introDiceELement = dice.map((die) => <Die key={die.id} {...die} />);
