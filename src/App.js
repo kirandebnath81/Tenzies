@@ -133,10 +133,10 @@ export default function App() {
             <div className="tenzies-record">
               <div className="currentRoll">
                 <p>
-                  Your Roll : <span>{rollCount}</span>
+                  Your Roll : <span>{rollCount<10?"0"+rollCount:rollCount}</span>
                 </p>
                 <p>
-                  Your Time : <span>{time}</span>
+                  Your Time : <span>{time<10?"0"+time:time}</span> sec
                 </p>
               </div>
               {savedRoll && (
@@ -145,10 +145,10 @@ export default function App() {
                     Record Holder : <span>{savedName}</span>
                   </h3>
                   <h3 className="recordRoll">
-                    Record Roll : <span>{savedRoll}</span>
+                    Record Roll : <span>{savedRoll<10?"0"+savedRoll:savedRoll}</span>
                   </h3>
                   <h3 className="recordTime">
-                    Record Time : <span>{savedTime}</span>
+                    Record Time : <span>{savedTime<10?"0"+savedTime:savedTime}</span>
                   </h3>
                 </div>
               )}
