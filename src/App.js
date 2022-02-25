@@ -48,6 +48,9 @@ export default function App() {
       setSavedRoll(localStorage.getItem("diceRoll"));
       setSavedName(localStorage.getItem("recordHolder"));
       setSavedTime(localStorage.getItem("recordTime"));
+      toast.success("Opps! You can't break the record, better luck nxt time", {
+        theme: "colored",
+      });
     } else {
       setTenzies(false);
     }
